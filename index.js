@@ -6,6 +6,7 @@ import { ParseServer } from 'parse-server';
 import path from 'path';
 const __dirname = path.resolve();
 import http from 'http';
+import cors from 'cors';  // Import the CORS package
 
 export const config = {
   databaseURI:
@@ -25,6 +26,9 @@ export const config = {
 export const app = express();
 
 app.set('trust proxy', true);
+
+// Enable CORS for all requests
+app.use(cors());  // Add this line
 
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
